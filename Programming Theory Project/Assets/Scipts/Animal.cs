@@ -6,7 +6,7 @@ public class Animal : MonoBehaviour
 {
 
     public string animalName;
-
+   
     private int animalSpeed;
     public int _animalSpeed
     {
@@ -32,7 +32,7 @@ public class Animal : MonoBehaviour
 
 
     
-    public virtual void Moving() { transform.position += Vector3.right; }
+    public virtual void Moving() { transform.position += Vector3.back; }
     public virtual void Moving(Vector3 pos) { transform.position = pos; }
     public virtual void Speak()
     {
@@ -46,6 +46,10 @@ public class Animal : MonoBehaviour
 
 }
 
+public interface ISelected
+{
+    public void Select();
+}
 
 public enum MoveType { Fly , Walk , creep}
 public enum Size { Small , Medium , Large}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tiger : Animal
+public class Tiger : Animal ,ISelected
 {
 
     private void Start()
@@ -23,6 +23,9 @@ public class Tiger : Animal
         Debug.Log("Tigo bye");
     }
 
-    
-
+    public void Select()
+    {
+        Speak();
+        Moving();
+    }
 }

@@ -7,7 +7,7 @@ public class Manger : MonoBehaviour
 {
     Tiger x;
     Snake y;
-
+    public GameObject marker;
     
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class Manger : MonoBehaviour
         y = GameObject.Find("Snake").GetComponent<Snake>();
 
         x.animalName = "tiger";
-        x._animalSpeed = -1;
+        x._animalSpeed = 10;
 
         x.animalName = "snake";
         x._animalSpeed = 2;
@@ -28,15 +28,31 @@ public class Manger : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            x.Speak();
-            y.Speak();
-            x.Moving();
-            y.Moving();
+          
+            RaycastHit hitInfo = new RaycastHit();
+            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+            if (hit)
+            {
+                var l = hitInfo.transform.gameObject;
+               
+               if( l.GetComponent<ISelected>() != null)
+                {
+                    SetMarker(l.transform.position);
+                    l.GetComponent<ISelected>().Select();
+                }
+
+            }
+            else
+            {
+                Debug.Log("No hit");
+            }
+           
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            x.Moving(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            y.Moving(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
+    }
+
+    void SetMarker(Vector3 pos)
+    {
+        marker.SetActive(true);
+        marker.transform.position = pos + new Vector3(0, 1, 0);
     }
 }

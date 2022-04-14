@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : Animal
+public class Snake : Animal , ISelected
 {
 
     private void Start()
@@ -30,5 +30,9 @@ public class Snake : Animal
         base.Moving(-pos);
     }
 
-  
+    public void Select()
+    {
+        Speak();
+        Moving();
+    }
 }
