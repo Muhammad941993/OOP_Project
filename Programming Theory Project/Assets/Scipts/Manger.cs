@@ -7,11 +7,13 @@ public class Manger : MonoBehaviour
 {
     Tiger x;
     Snake y;
-    public GameObject marker;
+     GameObject marker;
     
     // Start is called before the first frame update
     void Start()
     {
+        marker = GameObject.Find("Marker");
+       
         x = GameObject.Find("tiger").GetComponent<Tiger>();
         y = GameObject.Find("Snake").GetComponent<Snake>();
 
